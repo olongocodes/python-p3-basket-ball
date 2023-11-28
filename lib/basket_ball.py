@@ -348,6 +348,45 @@ def average_rebounds_by_shoe_brand():
         print(f"{brand}:  {average_rebounds:.2f} rebounds")
 
 # Example usage:
-average_rebounds_by_shoe_brand()
+# average_rebounds_by_shoe_brand()
 
+def player_with_most_career_points():
+    game_data = game_dict()
+
+    all_players = game_data["home"]["players"] + game_data["away"]["players"]
+    player_with_most_points = max(all_players, key=lambda player: player["career_points"])
+
+    return player_with_most_points["name"]
+
+#Example usage
+# most_points_player = player_with_most_career_points()
+# print(f"The player with the most career points is: {most_points_player}")
+
+def common_jersy_numbers():
+    game_data = game_dict()
+
+    home_numbers = set(player["number"] for player in game_data["home"]["players"])
+    away_numbers = set(player["number"] for player in game_data["away"]["players"])
+
+    common_numbers = home_numbers.intersection(away_numbers)
+    return list(common_numbers)
+
+#Example usge
+# common_numbers = common_jersy_numbers()
+# if common_numbers:
+#     print(f"The followig jersy numbers are won by players on both teams: {common_numbers}")
+# else:
+#     print("There sre no common jersy numbers between players on both teams.")
     
+
+def player_with_longest_name():
+    game_data = game_dict()
+
+    all_players = game_data["home"]["players"] + game_data["away"]["players"]
+    player_with_longest_name = max(all_players, key=lambda player: len(player["name"]))
+
+    return player_with_longest_name["name"]
+
+#example usage
+longest_name_player = player_with_longest_name()
+print(f"The player with the longest name is: {longest_name_player}")
